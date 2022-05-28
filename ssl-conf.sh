@@ -45,4 +45,4 @@ for domain in $1; do
 	fi
 done
 
-exec httpd -DFOREGROUND "$@"
+httpd-foreground
