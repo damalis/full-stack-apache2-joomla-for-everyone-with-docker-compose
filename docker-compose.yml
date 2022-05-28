@@ -41,7 +41,7 @@ services:
         container_name: webserver
         networks:
             - backend
-            - frontend			
+            - frontend
         volumes:
             - 'html:${WEBSERVER_DOC_ROOT}'
             - type: bind
@@ -52,9 +52,9 @@ services:
               target: '${LETSENCRYPT_CONF_PREFIX}/options-ssl-apache.conf'
             - type: bind
               source: ./ssl-conf.sh
-              target: '/tmp/ssl-conf.sh'			  
+              target: '/tmp/ssl-conf.sh'
             - 'certbot-etc:${LETSENCRYPT_CONF_PREFIX}'
-            - '/tmp/acme-challenge:/tmp/acme-challenge'			  
+            - '/tmp/acme-challenge:/tmp/acme-challenge'
         hostname: webserver        
         restart: unless-stopped
         ports:
@@ -68,7 +68,7 @@ services:
     
     certbot:
         depends_on:
-            - proxy
+            - webserver
         image: certbot/certbot
         container_name: certbot
         networks:
