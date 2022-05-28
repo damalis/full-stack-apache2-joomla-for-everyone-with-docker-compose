@@ -12,12 +12,12 @@ fi
 
 use_lets_encrypt_certificates() {
 	echo "switching webserver to use Let's Encrypt certificate for $1"	
-	sed '/#location.\/./,/#}/ s/#//; s/#listen/listen/g; s/#ssl_/ssl_/g' $3/conf.d/default.conf > $3/conf.d/default.conf.bak
+	sed '/^#\(.*\)pem/ s/^#//' $3/extra/httpd-ssl.conf > $3/extra/httpd-ssl.conf.bak
 }
 
 reload_apache2() {
-	#cp $1/conf.d/default.conf.bak $1/conf.d/default.conf
-	#rm $1/conf.d/default.conf.bak
+	cp $1/extra/httpd-ssl.conf.bak $1/extra/httpd-ssl.conf
+	rm $1/extra/httpd-ssl.conf.bak
 	echo "Starting webserver apache2 service"
 	httpd -t
 }
@@ -32,7 +32,7 @@ wait_for_lets_encrypt() {
 			if [ -d "$2/live/$1" ]; then break; fi
 		done
 	fi;
-	#use_lets_encrypt_certificates "$1" "$2" "$3"
+	use_lets_encrypt_certificates "$1" "$2" "$3"
 	reload_apache2 "$3"
 }
 
@@ -40,7 +40,7 @@ for domain in $1; do
 	if [ ! -d "$2/live/$1" ]; then
 		wait_for_lets_encrypt "$domain" "$2" "$3" &
 	else
-		#use_lets_encrypt_certificates "$domain" "$2" "$3"
+		use_lets_encrypt_certificates "$domain" "$2" "$3"
 		reload_apache2 "$3"
 	fi
 done
