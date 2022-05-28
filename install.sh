@@ -4,7 +4,7 @@ clear
 echo ""
 echo "================================================================="
 echo "|                                                               |"
-echo "|      full-stack-joomla-for-everyone-with-docker-compose       |"
+echo "|      full-stack-apache2-joomla-for-everyone-with-docker-compose       |"
 echo "|                      by Erdal ALTIN                           |"
 echo "|                                                               |"
 echo "================================================================="
