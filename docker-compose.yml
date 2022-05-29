@@ -64,7 +64,7 @@ services:
             TZ: '${LOCAL_TIMEZONE}'
         labels:            
             - "docker-volume-backup.stop-during-backup=true"
-        command: bash -c "sh /tmp/ssl-conf.sh '${DOMAIN_NAME}' '${LETSENCRYPT_CONF_PREFIX}' '${HTTPD_PREFIX}'"
+        command: bash -c "sh /tmp/ssl-conf.sh '${DOMAIN_NAME}' '${LETSENCRYPT_CONF_PREFIX}' '${HTTPD_PREFIX}/conf'"
     
     certbot:
         depends_on:
