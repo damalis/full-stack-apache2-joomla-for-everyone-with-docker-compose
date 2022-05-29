@@ -11,7 +11,7 @@ if [ ! -f $2/ssl-dhparam.pem 2>/dev/null ]; then
 fi
 
 use_lets_encrypt_certificates() {
-	echo "switching webserver to use Let's Encrypt certificate for $1"	
+	echo "switching webserver to use Let's Encrypt certificate for $1"
 	sed '/^#\(.*\)httpd-ssl\.conf/ s/^#//' $3/httpd.conf > $3/httpd.conf.bak
 	sed 's/#LoadModule/LoadModule/' $3/extra/httpd-vhosts.conf > $3/extra/httpd-vhosts.conf.bak
 }
