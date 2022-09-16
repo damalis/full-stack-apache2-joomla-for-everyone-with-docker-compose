@@ -127,6 +127,7 @@ For convenience you may add a new entry into your hosts file.
 ### Installation Portainer
 
 ```
+docker volume create portainer_data > /dev/null
 docker-compose -f portainer-docker-compose.yml -p portainer up -d 
 ```
 manage docker with [Portainer](https://www.portainer.io/solutions/docker) is the definitive container management tool for Docker, Docker Swarm with it's highly intuitive GUI and API. 
@@ -203,7 +204,7 @@ pm.max_requests = 1000
 Or you should make changes custom host configurations then must restart service
 
 ```
-docker container restart <joomla_container_id>
+docker container restart joomla
 ```
 
 add and/or remove joomla site folders and files with any ftp client program in ```./joomla``` folder.
