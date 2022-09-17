@@ -6,7 +6,7 @@ services:
         depends_on:
             - database
         image: 'joomla:${PHP_IMAGE_NAME}'
-        container_name: 'joomla'
+        container_name: joomla
         networks:
             - backend            
         volumes:
