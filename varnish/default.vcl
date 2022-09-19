@@ -7,15 +7,6 @@ backend default {
     .port = "81";
 }
 
-# Add hostnames, IP addresses and subnets that are allowed to purge content
-acl purge {
-    "webserver";
-    "joomla";
-    "localhost";
-    "127.0.0.1";
-    "::1";
-}
-
 sub vcl_recv {   
     # Remove empty query string parameters
     # e.g.: www.example.com/index.html?
@@ -36,9 +27,6 @@ sub vcl_recv {
     # Purge logic to remove objects from the cache. 
     # Tailored to the Proxy Cache Purge
     if(req.method == "PURGE") {
-        if(!client.ip ~ purge) {
-            return(synth(405,"PURGE not allowed for this IP address"));
-        }
         if (req.http.X-Purge-Method == "regex") {
             ban("obj.http.x-url ~ " + req.url + " && obj.http.x-host == " + req.http.host);
             return(synth(200, "Purged"));
