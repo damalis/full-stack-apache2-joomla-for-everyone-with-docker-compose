@@ -114,7 +114,7 @@ sub vcl_recv {
         return(pass);
     }
 	
-	# Remove x-cache-status header
+    # Remove x-cache-status header
     unset req.http.x-cache-status;
 
     # Remove any cookies left
