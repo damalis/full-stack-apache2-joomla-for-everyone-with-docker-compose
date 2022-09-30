@@ -117,7 +117,7 @@ docker-compose up -d
 then reloading for webserver ssl configuration
 
 ```
-docker exec webserver httpd -k restart
+docker container restart webserver
 ```
 
 The containers are now built and running. You should be able to access the Joomla installation with the configured IP in the browser address. `https://example.com`.
@@ -210,9 +210,11 @@ docker container restart joomla
 add and/or remove joomla site folders and files with any ftp client program in ```./joomla``` folder.
 <br />You can also visit `https://example.com` to access website after starting the containers.
 
-#### For Joomla Installation
+#### Joomla
 
 Database server name = database
+
+Database name = ${JOOMLA_DB_NAME} constant at ./.env file.
 
 ##### How to remove index.php from URLs or How to Solve Joomla Installation stuck on white blank page.
 
