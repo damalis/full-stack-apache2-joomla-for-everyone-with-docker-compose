@@ -138,6 +138,14 @@ You can also visit `https://example.com:9001` to access portainer after starting
 
 #### You could manage docker containers without command line with portainer.
 
+### Show both running and stopped containers
+
+The docker ps command only shows running containers by default. To see all containers, use the -a (or --all) flag:
+
+```
+docker ps -a
+```
+
 ### Starting containers
 
 You can start the containers with the `up` command in daemon mode (by adding `-d` as an argument) or by using the `start` command:
