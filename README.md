@@ -235,7 +235,7 @@ add or remove code in the ```./webserver/extra/httpd-ssl.conf``` file for custom
 
 Database server name = database
 
-##### How to remove index.php from URLs or How to Solve Joomla Installation stuck on white blank page.
+#### How to remove index.php from URLs or How to Solve Joomla Installation stuck on white blank page.
 
 You must restart varnish container after enable Use URL Rewriting at Joomla admin page.
 
