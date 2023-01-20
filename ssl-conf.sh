@@ -14,7 +14,7 @@ use_lets_encrypt_certificates() {
 	echo "switching webserver to use Let's Encrypt certificate for $1"
 	sed 's/#LoadModule/LoadModule/' $3/extra/httpd-vhosts.conf > $3/extra/httpd-vhosts.conf.bak
 	sed 's/example.com/'$1'/g' $3/extra/httpd-ssl.conf > $3/extra/httpd-ssl.conf.bak
-	sed '/^#\(.*\)httpd-ssl\.conf/ s/^#//' $3/httpd.conf > $3/httpd.conf.bak	
+	sed '/^#\(.*\)httpd-ssl\.conf/ s/^#//' $3/httpd.conf > $3/httpd.conf.bak
 }
 
 reload_webserver() {
@@ -23,7 +23,7 @@ reload_webserver() {
 	cp $1/httpd.conf.bak $1/httpd.conf
 	rm $1/extra/httpd-ssl.conf.bak
 	rm $1/extra/httpd-vhosts.conf.bak
-	rm $1/httpd.conf.bak	
+	rm $1/httpd.conf.bak
 	echo "Starting webserver apache2 service"
 	httpd -t
 }
@@ -42,13 +42,11 @@ wait_for_lets_encrypt() {
 	reload_webserver "$3"
 }
 
-for domain in $1; do
-	if [ ! -d "$2/live/$1" ]; then
-		wait_for_lets_encrypt "$domain" "$2" "$3" &
-	else
-		use_lets_encrypt_certificates "$domain" "$2" "$3"
-		reload_webserver "$3"
-	fi
-done
+if [ ! -d "$2/live/$1" ]; then
+	wait_for_lets_encrypt "$1" "$2" "$3" &
+else
+	use_lets_encrypt_certificates "$1" "$2" "$3"
+	reload_webserver "$3"
+fi
 
 httpd-foreground
