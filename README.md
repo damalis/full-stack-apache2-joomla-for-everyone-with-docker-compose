@@ -314,7 +314,7 @@ You must restart varnish container after enable Use URL Rewriting at Joomla admi
 
 #### Redis
 
-set and enable cache option at global configuration [Redis Cache](https://example.com/administrator/).
+set and enable cache option at global configuration Redis Cache.
 
 Cache Handler = redis
 
