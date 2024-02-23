@@ -223,7 +223,7 @@ services:
         command: "-a http=:8080,HTTP -p default_ttl=3600 -n /tmp/varnish_workdir"
 
     mail:
-        image: mailhog/mailhog
+        image: mailhog/mailhog:latest
         container_name: mail
         networks:
             - backend
