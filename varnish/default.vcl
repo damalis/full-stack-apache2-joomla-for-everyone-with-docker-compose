@@ -5,6 +5,7 @@ import std;
 backend default {
     .host = "webserver";
     .port = "90";
+    .connect_timeout = 2s;
 }
 
 sub vcl_recv {   
