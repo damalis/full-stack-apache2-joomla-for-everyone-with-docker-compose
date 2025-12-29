@@ -27,7 +27,10 @@ Plus, manage docker containers with Portainer.
 <p align="left"> arm64/aarch64, x86-64 </p>
 
 #### Supported Linux Package Manage Systems:
-<p align="left"> apk, dnf, yum, apt/apt-get, zypper, pacman </p>
+<p align="left"> apk, dnf, yum, apt/apt-get/dpkg, zypper, pacman </p>
+
+#### Supported Linux Distributions:
+<p align="left"> centos, debian, fedora, raspbian, rhel, sles, static, ubuntu </p>
  
 #### Supported Linux Operation Systems:
 <p align="left">
@@ -43,6 +46,7 @@ Plus, manage docker containers with Portainer.
 </p>
 
 ##### Note: Fedora 37, 39 and alpine linux x86-64 compatible, could not try sles IBM Z s390x, rhel IBM Z s390x and raspberrypi.
+##### After installing the repository, a system reboot is required on Red Hat OS, Arch Linux.
 
 #### With this project you can quickly run the following:
 
@@ -100,7 +104,7 @@ Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved an
 ```
 cd full-stack-apache2-joomla-for-everyone-with-docker-compose
 chmod +x install.sh
-./install.sh
+sudo LC_ALL=C.UTF-8 ./install.sh # LC_ALL=C.UTF-8 if not os language english
 ```
 
 ### Manual
@@ -172,7 +176,7 @@ Edit the `.env` file to change values of
   </tr>
   <tr>
     <td>mysql</td>
-    <td><code>microdnf install -y gettext</code></td>
+    <td><code>microdnf update -y && microdnf install -y gettext</code></td>
   </tr>
   <tr>
     <td rowspan="2"><code>DATABASE_ADMIN_COMMANDLINE</code></td>
@@ -265,19 +269,19 @@ You can also visit `https://example.com:9001` to access portainer after starting
 #### Here’s a quick reference of commonly used Docker Compose commands
 
 ```
-docker ps -a	# Lists all containers managed by the compose file
+docker ps -a # Lists all containers managed by the compose file
 ```
 
 ```
-docker compose start	# Starts previously stopped containers
+docker compose start # Starts previously stopped containers
 ```
 
 ```
-docker compose stop	# Stops all running containers
+docker compose stop # Stops all running containers
 ```
 
 ```
-docker compose down	# Stops and removes containers, networks, etc.
+docker compose down # Stops and removes containers, networks, etc.
 ```
 
 ```
@@ -285,31 +289,31 @@ docker compose down -v # Add --volumes to remove volumes explicitly
 ```
 
 ```
-docker rm -f $(docker ps -a -q)	# Removes portainer and the other containers
+docker rm -f $(docker ps -a -q) # Removes portainer and the other containers
 ```
 
 ```
-docker volume rm $(docker volume ls -q)	# Removes all volumes
+docker volume rm $(docker volume ls -q) # Removes all volumes
 ```
 
 ```
-docker network prune	# Remove all unused networks
+docker network prune # Remove all unused networks
 ```
 
 ```
-docker system prune	# Removes unused data (containers, networks, images, and optionally volumes)
+docker system prune # Removes unused data (containers, networks, images, and optionally volumes)
 ```
 
 ```
-docker system prune -a	# Removes all unused images, not just dangling ones
+docker system prune -a # Removes all unused images, not just dangling ones
 ```
 
 ```
-docker rmi $(docker image ls -q)	# Removes portainer and the other images
+docker rmi $(docker image ls -q) # Removes portainer and the other images
 ```
 
 ```
-docker container logs container_name_or_id	# Shows logs from all services
+docker container logs container_name_or_id # Shows logs from all services
 ```
 
 #### Project from existing source
@@ -317,7 +321,7 @@ docker container logs container_name_or_id	# Shows logs from all services
 Copy all files into a new directory:
 
 ```
-docker compose up -d	# Starts services in detached mode (in the background)
+docker compose up -d # Starts services in detached mode (in the background)
 ```
 
 #### Docker run reference
