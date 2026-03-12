@@ -39,7 +39,7 @@ services:
             TZ: '${LOCAL_TIMEZONE}'
         labels:
             - 'docker-volume-backup.stop-during-backup=true'
-        entrypoint: bash -c "apt-get -y update && rm -f ${WEBSERVER_DOC_ROOT}/README.md && sh /tmp/packagecheck.sh 'golang git' && go get github.com/mailhog/mhsendmail && cp /root/go/bin/mhsendmail /usr/bin/mhsendmail && TMP=$$(mktemp) && grep -vF 'date.timezone' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini > $$TMP && echo 'date.timezone = ${LOCAL_TIMEZONE}' >> $$TMP && cp $$TMP ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; /entrypoint.sh 'php-fpm'"
+        entrypoint: bash -c "apt-get -y update && rm -f ${WEBSERVER_DOC_ROOT}/README.md && sh /tmp/packagecheck.sh 'golang git' && go install github.com/mailhog/mhsendmail@latest && cp /root/go/bin/mhsendmail /usr/bin/mhsendmail && TMP=$$(mktemp) && grep -vF 'date.timezone' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini > $$TMP && echo 'date.timezone = ${LOCAL_TIMEZONE}' >> $$TMP && cp $$TMP ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; /entrypoint.sh 'php-fpm'"
 
     webserver:
         depends_on:
