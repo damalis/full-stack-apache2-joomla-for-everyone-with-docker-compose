@@ -74,7 +74,7 @@ services:
             test: ["CMD-SHELL", "/bin/pidof httpd > /dev/null || exit 1"]
             interval: 10s
             timeout: 5s
-            retries: 10
+            retries: 20
         environment:
             TZ: '${LOCAL_TIMEZONE}'
         command: bash -c "sh /tmp/ssl-conf.sh '${DOMAIN_NAME}' '${LETSENCRYPT_CONF_PREFIX}' '${HTTPD_PREFIX}/conf'"
