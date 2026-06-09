@@ -56,7 +56,7 @@ Plus, manage docker containers with Portainer.
 - [Mariadb](https://hub.docker.com/_/mariadb) [Mysql](https://hub.docker.com/_/mysql)
 - [redis](https://hub.docker.com/_/redis)
 - [varnish](https://hub.docker.com/_/varnish)
-- [mailhog](https://github.com/mailhog)
+- [MailHog](https://github.com/mailhog)
 - [backup](https://hub.docker.com/r/offen/docker-volume-backup)
 
 #### For certbot (letsencrypt) certificate:
@@ -338,7 +338,7 @@ docker container restart varnish
 
 #### Webserver
 
-add or remove code in the ```./webserver/extra/httpd-ssl.conf``` file for custom apache2/httpd configurations
+add or remove code in the ```./webserver/conf/extra/httpd-ssl.conf``` file for custom apache2/httpd configurations
 
 [https://httpd.apache.org/docs/2.4/](https://httpd.apache.org/docs/2.4/)
 
